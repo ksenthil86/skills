@@ -1,0 +1,31 @@
+[
+  {
+    "id": "TC-001",
+    "description": "Simple 2-AC login story",
+    "input": "As a user I want to log in. AC: 1. Valid creds → dashboard. 2. Invalid creds → error.",
+    "expected": {
+      "scenario_count": 2,
+      "has_scenario_outline": false,
+      "tags": ["@smoke", "@negative"],
+      "step_defs_match": true
+    }
+  },
+  {
+    "id": "TC-002",
+    "description": "Data-driven story — must use Scenario Outline",
+    "input": "Login fails for 4 different invalid input combinations.",
+    "expected": {
+      "has_scenario_outline": true,
+      "examples_row_count": 4
+    }
+  },
+  {
+    "id": "TC-003",
+    "description": "Ambiguous AC — must ask clarifying question",
+    "input": "AC: 1. It should work on all devices.",
+    "expected": {
+      "asks_clarification": true,
+      "generates_feature": false
+    }
+  }
+]
