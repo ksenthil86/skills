@@ -1,0 +1,39 @@
+{
+  // .vscode/mcp.json
+  // Registers your local Confluence MCP server with GitHub Copilot in VS Code.
+  // VS Code starts this process automatically when you open the project.
+  // NOTE: the root key is "servers" (not "mcpServers" — that's a Cursor/Claude Desktop convention).
+  "servers": {
+    "confluence-doc-review": {
+      "type": "local",
+      "command": "python",
+      "args": ["mcp/confluence_server.py"],
+      "env": {
+        "CONFLUENCE_URL":        "${input:confluence_url}",
+        "CONFLUENCE_EMAIL":      "${input:confluence_email}",
+        "CONFLUENCE_API_TOKEN":  "${input:confluence_api_token}"
+      }
+    }
+  },
+  // VS Code will prompt the user for these values the first time the server starts.
+  // Values are stored securely in VS Code's secret storage — never in plain text.
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "confluence_url",
+      "description": "Your Confluence base URL (e.g. https://yourcompany.atlassian.net)",
+      "default": "https://yourcompany.atlassian.net"
+    },
+    {
+      "type": "promptString",
+      "id": "confluence_email",
+      "description": "Your Atlassian account email"
+    },
+    {
+      "type": "promptString",
+      "id": "confluence_api_token",
+      "description": "Your Atlassian API token (from id.atlassian.com/manage-profile/security/api-tokens)",
+      "password": true
+    }
+  ]
+}
